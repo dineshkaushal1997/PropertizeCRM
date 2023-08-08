@@ -1,9 +1,12 @@
 import 'package:get/get.dart';
 import 'package:property_crm/utils/const_utils.dart';
+import 'package:property_crm/view/onBoarding/on_boarding_screen.dart';
 import 'package:property_crm/view/onBoarding/splash_screen.dart';
+
 class RouteUtils {
   ///ALL ROUTES NAME
-  static const splashScreen = '/splashScreen';
+  static const splashScreen = '/SplashScreen';
+  static const onBoardingScreen = '/OnBoardingScreen';
   static const login = '/login';
 
   /// --------------------------------   GET PAGES   --------------------------------- ///
@@ -15,6 +18,10 @@ class RouteUtils {
       name: splashScreen,
       page: () => const SplashScreen(),
     ),
+    GetPage(
+      name: onBoardingScreen,
+      page: () =>  OnBoardingScreen(),
+    ),
   ];
 
   /// --------------------------------  NAVIGATOR  ----------------------------------- ///
@@ -24,6 +31,11 @@ class RouteUtils {
       case splashScreen:
         Get.toNamed(
           splashScreen,
+        );
+        break;
+      case onBoardingScreen:
+        Get.offAndToNamed(
+          onBoardingScreen,
         );
         break;
 

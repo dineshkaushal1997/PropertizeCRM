@@ -43,8 +43,13 @@ class FontTextStyle {
   );
   static TextStyle poppinsW5S14Primary =
       poppinsW6S14Primary.copyWith(fontWeight: FontWeightClass.medium);
+  static TextStyle poppinsW5S14Black = poppinsW5S14Primary.copyWith(
+    color: ColorUtils.black,
+  );
 
   /// ........................................ 12 SIZE........................................... ///
   static TextStyle poppinsW6S12White =
       poppinsW6S20Black.copyWith(color: ColorUtils.white, fontSize: 12.sp);
+  static TextStyle poppinsW6S12Primary =
+      poppinsW6S12White.copyWith(color: ColorUtils.primaryColor);
 }
