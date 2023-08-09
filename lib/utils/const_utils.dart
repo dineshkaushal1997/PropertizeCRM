@@ -11,7 +11,9 @@ void logs(String message) {
 }
 
 class ConstUtils{
-  /// ------------------------- TOAST -------------------- ///
+  static int horizontalPadding=15;
+  static const kPasswordLength = 6;
+  static const kPhoneNumberLength = 6;
   static showToast({required String msg, bool success = false}) {
     return Get.showSnackbar(GetSnackBar(
       message: msg,

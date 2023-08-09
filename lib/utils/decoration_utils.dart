@@ -12,4 +12,18 @@ class DecorationUtils {
         color: color ?? ColorUtils.white);
   }
 
+  /// ------------------------------------------------------------------- ///
+  /// TEXT FIELD OUTLINE DECORATION
+  static InputBorder outLinePurpleR8 = OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+    borderSide: BorderSide(color: ColorUtils.primaryColor, width: 1.0),
+  );
+  static InputBorder outLineGeryR8 = OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+    borderSide: BorderSide(color: ColorUtils.grey.withOpacity(0.2), width: 1.0),
+  );
+  static InputBorder outLineRedR8 = OutlineInputBorder(
+    borderRadius: BorderRadius.all(Radius.circular(8.0)),
+    borderSide: BorderSide(color: Colors.red, width: 1.0),
+  );
 }

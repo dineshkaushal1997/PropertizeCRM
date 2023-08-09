@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:property_crm/utils/const_utils.dart';
+import 'package:property_crm/view/auth/login_screen.dart';
 import 'package:property_crm/view/onBoarding/on_boarding_screen.dart';
 import 'package:property_crm/view/onBoarding/splash_screen.dart';
 
@@ -20,7 +21,11 @@ class RouteUtils {
     ),
     GetPage(
       name: onBoardingScreen,
-      page: () =>  OnBoardingScreen(),
+      page: () => OnBoardingScreen(),
+    ),
+    GetPage(
+      name: login,
+      page: () => LoginScreen(),
     ),
   ];
 
@@ -36,6 +41,11 @@ class RouteUtils {
       case onBoardingScreen:
         Get.offAndToNamed(
           onBoardingScreen,
+        );
+        break;
+      case login:
+        Get.offAndToNamed(
+          login,
         );
         break;
 

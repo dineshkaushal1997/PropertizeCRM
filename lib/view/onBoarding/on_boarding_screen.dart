@@ -6,6 +6,8 @@ import 'package:property_crm/utils/color_utils.dart';
 import 'package:property_crm/utils/const_utils.dart';
 import 'package:property_crm/utils/extension_utils.dart';
 import 'package:property_crm/utils/font_style_utils.dart';
+import 'package:property_crm/utils/preferences_utils.dart';
+import 'package:property_crm/utils/route_utils.dart';
 import 'package:property_crm/utils/size_config_utils.dart';
 import 'package:property_crm/utils/variable_utisl.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -61,7 +63,11 @@ class OnBoardingScreen extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  PreferencesUtils.setBool(
+                      key: PreferencesUtils.isOnBoarding, value: true);
+                  RouteUtils.navigateRoute(RouteUtils.login);
+                },
                 child: CustomTextWidget(
                   title: VariableUtils.skip.toUpperCase(),
                   textStyle: FontTextStyle.poppinsW6S12Primary,
@@ -109,6 +115,10 @@ class OnBoardingScreen extends StatelessWidget {
                   pageController.nextPage(
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.ease);
+                } else {
+                  PreferencesUtils.setBool(
+                      key: PreferencesUtils.isOnBoarding, value: true);
+                  RouteUtils.navigateRoute(RouteUtils.login);
                 }
               },
               width: 40.w,

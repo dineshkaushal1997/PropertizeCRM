@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:property_crm/common/custom_text_widget.dart';
 import 'package:property_crm/utils/color_utils.dart';
 import 'package:property_crm/utils/font_style_utils.dart';
+import 'package:property_crm/utils/preferences_utils.dart';
 import 'package:property_crm/utils/route_utils.dart';
 import 'package:property_crm/utils/variable_utisl.dart';
 
@@ -21,7 +22,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void init() {
     Future.delayed(const Duration(seconds: 3), () {
-      RouteUtils.navigateRoute(RouteUtils.onBoardingScreen);
+      if (PreferencesUtils.getBool(PreferencesUtils.isOnBoarding) == false) {
+        RouteUtils.navigateRoute(RouteUtils.onBoardingScreen);
+      } else {
+        RouteUtils.navigateRoute(RouteUtils.login);
+      }
     });
   }
 

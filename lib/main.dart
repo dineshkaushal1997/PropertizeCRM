@@ -33,13 +33,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setSystemUIOverlayStyle(
-    //   SystemUiOverlayStyle(
-    //     statusBarColor: Colors.red, // set to your preferred color
-    //     statusBarBrightness: Brightness.light, // set to your preferred brightness
-    //     statusBarIconBrightness: Brightness.dark, // set to your preferred brightness
-    //   ),
-    // );
+
     return LayoutBuilder(
       builder: (_, constraint) {
         logs('constraint.maxWidth:=>${constraint.maxWidth}');
@@ -48,12 +42,17 @@ class MyApp extends StatelessWidget {
         }
 
         /// smartManagement: SmartManagement.full,
-        return GetMaterialApp(
-          title: VariableUtils.appName,
+        return GestureDetector(
+          onTap: () {
+            FocusManager.instance.primaryFocus!.unfocus();
+          },
+          child: GetMaterialApp(
+            title: VariableUtils.appName,
 
-          debugShowCheckedModeBanner: false,
-          getPages: RouteUtils.routePages,
-          initialRoute: RouteUtils.splashScreen,
+            debugShowCheckedModeBanner: false,
+            getPages: RouteUtils.routePages,
+            initialRoute: RouteUtils.splashScreen,
+          ),
         );
       },
     );
