@@ -8,7 +8,7 @@ class RegularExpression {
   static String passwordPattern = r"[a-zA-Z0-9#!_@$%^&*-]";
   static String alphabetPattern = r"[a-zA-Z]";
   static String alphabetPlusPattern = r"[a-zA-Z+]";
-  static String alphabetSpacePattern = r"[a-zA-Z ]";
+    static String alphabetSpacePattern = r"[a-zA-Z ]";
   static String alphabetDigitSpacePattern = r"[a-zA-Z0-9 ]";
   static String alphabetDigitsPattern = r"[a-zA-Z0-9]";
   static String alphabetDigitsSpacePlusPattern = r"[a-zA-Z0-9+ ]";

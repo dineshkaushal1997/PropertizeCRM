@@ -14,8 +14,19 @@ class ImageUtils {
     '${imgBasePath}otpImg.png',
     scale: 2,
   );
-  static final registerImg = Image.asset(
-    '${imgBasePath}registerImg.png',
+
+/// ================================== ICONS ================================== ///
+
+  static final phone = Image.asset(
+    '${iconBasePath}phone.png',
+    scale: 2,
+  );
+  static final person = Image.asset(
+    '${iconBasePath}person.png',
+    scale: 2,
+  );
+  static final location = Image.asset(
+    '${iconBasePath}location.png',
     scale: 2,
   );
 }

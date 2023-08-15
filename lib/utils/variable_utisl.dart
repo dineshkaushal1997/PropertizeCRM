@@ -23,7 +23,7 @@ class VariableUtils {
   static const loginToYourExitingAccount = "Login to your exiting account";
   static const enterPhoneNumber = "Enter Phone Number";
   static const signIn = "Sign In";
-  static const dontHaveAnAccount = "Don’t have an account?";
+  static const dontHaveAnAccount = "Don’t have an account? ";
   static const signUp = "Sign up";
   static const verifyPhoneNumber = "Verify Phone Number";
   static const enterCodeSentToYourNumber =

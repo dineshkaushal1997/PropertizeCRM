@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:property_crm/utils/const_utils.dart';
 import 'package:property_crm/view/auth/login_screen.dart';
+import 'package:property_crm/view/auth/otp_verify.dart';
+import 'package:property_crm/view/auth/register_screen.dart';
 import 'package:property_crm/view/onBoarding/on_boarding_screen.dart';
 import 'package:property_crm/view/onBoarding/splash_screen.dart';
 
@@ -9,6 +11,8 @@ class RouteUtils {
   static const splashScreen = '/SplashScreen';
   static const onBoardingScreen = '/OnBoardingScreen';
   static const login = '/login';
+  static const register = '/Register';
+  static const otpVerify = '/OtpVerify';
 
   /// --------------------------------   GET PAGES   --------------------------------- ///
 
@@ -25,7 +29,15 @@ class RouteUtils {
     ),
     GetPage(
       name: login,
-      page: () => LoginScreen(),
+      page: () => const LoginScreen(),
+    ),
+    GetPage(
+      name: register,
+      page: () => const RegisterScreen(),
+    ),
+    GetPage(
+      name: otpVerify,
+      page: () => const OtpVerify(),
     ),
   ];
 
@@ -46,6 +58,16 @@ class RouteUtils {
       case login:
         Get.offAndToNamed(
           login,
+        );
+        break;
+      case register:
+        Get.toNamed(
+          register,
+        );
+        break;
+      case otpVerify:
+        Get.toNamed(
+          otpVerify,
         );
         break;
 

@@ -45,7 +45,7 @@ class CustomBtn extends StatelessWidget {
           borderRadius: BorderRadius.circular(radius ?? 7.sp),
           child: Center(
             child: CustomTextWidget(
-              title: title.toUpperCase(),
+              title: title,
               textStyle: textStyle ??
                   (bgColor == null
                       ? FontTextStyle.poppinsW6S14Primary
