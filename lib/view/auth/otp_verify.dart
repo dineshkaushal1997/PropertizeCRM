@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +10,7 @@ import 'package:property_crm/utils/const_utils.dart';
 import 'package:property_crm/utils/extension_utils.dart';
 import 'package:property_crm/utils/font_style_utils.dart';
 import 'package:property_crm/utils/image_utils.dart';
+import 'package:property_crm/utils/route_utils.dart';
 import 'package:property_crm/utils/size_config_utils.dart';
 import 'package:property_crm/utils/variable_utisl.dart';
 
@@ -60,13 +60,14 @@ class _OtpVerifyState extends State<OtpVerify> {
               child: ImageUtils.otpImg,
             ),
             OtpForm(
-                key: UniqueKey(),
-                otpTime: otpTime,
-                onResendOtpTap: () {
-                  print('Call---');
-                  otpTime = 30.obs;
-                  init();
-                }),
+              key: UniqueKey(),
+              otpTime: otpTime,
+              onResendOtpTap: () {
+                print('Call---');
+                otpTime.value = 30; // Reset the value
+                init();
+              },
+            ),
           ],
         ),
       ),
@@ -75,8 +76,7 @@ class _OtpVerifyState extends State<OtpVerify> {
 }
 
 class OtpForm extends StatelessWidget {
-  const OtpForm(
-      {super.key, required this.otpTime, required this.onResendOtpTap});
+  const OtpForm({super.key, required this.otpTime, required this.onResendOtpTap});
 
   final RxInt otpTime;
   final VoidCallback onResendOtpTap;
@@ -84,94 +84,102 @@ class OtpForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
+      child: SingleChildScrollView(
         child: Container(
-      width: Get.width,
-      margin: EdgeInsets.symmetric(horizontal: ConstUtils.horizontalPadding.sp),
-      decoration: const BoxDecoration(
-          color: ColorUtils.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
-      child: Column(
-        children: [
-          SizeConfigUtils.h3,
-          CustomTextWidget(
-              title: VariableUtils.verifyPhoneNumber,
-              textStyle: FontTextStyle.poppinsW6S18Primary),
-          CustomTextWidget(
-            title: VariableUtils.enterCodeSentToYourNumber,
-            textStyle: FontTextStyle.poppinsW4S12Black,
+          width: Get.width,
+          margin: EdgeInsets.symmetric(horizontal: ConstUtils.horizontalPadding.sp),
+          decoration: const BoxDecoration(
+            color: ColorUtils.white,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
           ),
-          SizeConfigUtils.h3,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Column(
             children: [
+              SizeConfigUtils.h3,
               CustomTextWidget(
-                title: "+91 1234567890",
-                textStyle: FontTextStyle.poppinsW6S12Primary,
+                title: VariableUtils.verifyPhoneNumber,
+                textStyle: FontTextStyle.poppinsW6S18Primary,
               ),
-              Obx(
-                () => CustomTextWidget(
-                  title: "00:${otpTime > 9 ? otpTime : "0$otpTime"}",
-                  textStyle: FontTextStyle.poppinsW6S12Primary,
+              CustomTextWidget(
+                title: VariableUtils.enterCodeSentToYourNumber,
+                textStyle: FontTextStyle.poppinsW4S12Black,
+              ),
+              SizeConfigUtils.h3,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomTextWidget(
+                    title: "+91 1234567890",
+                    textStyle: FontTextStyle.poppinsW6S12Primary,
+                  ),
+                  Text(
+                    "00:${otpTime.value > 9 ? otpTime.value : "0${otpTime.value}"}",
+                    style: FontTextStyle.poppinsW6S12Primary,
+                  ),
+                ],
+              ),
+              SizeConfigUtils.h7,
+              PinCodeTextField(
+                appContext: context,
+                length: 4,
+                cursorHeight: 15.sp,
+                cursorColor: ColorUtils.black26,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                textStyle: FontTextStyle.poppinsW6S14White,
+                enableActiveFill: true,
+                pinTheme: PinTheme(
+                  shape: PinCodeFieldShape.box,
+                  borderRadius: BorderRadius.circular(5),
+                  fieldHeight: 40.sp,
+                  fieldWidth: 40.sp,
+                  inactiveFillColor: ColorUtils.greyF2,
+                  activeFillColor: ColorUtils.primaryColor,
+                  selectedFillColor: ColorUtils.greyF2,
+                  activeColor: ColorUtils.transparent,
+                  inactiveColor: ColorUtils.transparent,
+                  selectedColor: ColorUtils.transparent,
                 ),
-              )
+                keyboardType: TextInputType.number,
+                onCompleted: (v) {
+                  debugPrint("Completed");
+                },
+                onChanged: (value) {},
+              ),
+               SizeConfigUtils.h30,
+              RichText(
+                text: TextSpan(
+                  style: FontTextStyle.poppinsW5S12Black,
+                  text: VariableUtils.dintReceiveCode,
+                  children: [
+                    TextSpan(
+                      text: VariableUtils.resendAgain,
+                      style: FontTextStyle.poppinsW6S12Primary,
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = onResendOtpTap,
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: ConstUtils.horizontalPadding.sp,
+                  vertical: 15.sp,
+                ),
+                child: CustomBtn(
+                  onTap: () {
+                    RouteUtils.navigateRoute(RouteUtils.bottomNavBar);
+
+                  },
+                  title: VariableUtils.continueStr,
+                  bgColor: ColorUtils.primaryColor,
+                  radius: 50.sp,
+                  height: 45.sp,
+                ),
+              ),
+              SizeConfigUtils.h5,
             ],
           ),
-          SizeConfigUtils.h7,
-          PinCodeTextField(
-            appContext: context,
-            length: 4,
-            cursorHeight: 15.sp,
-            cursorColor: ColorUtils.black26,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            textStyle: FontTextStyle.poppinsW6S14White,
-            enableActiveFill: true,
-            pinTheme: PinTheme(
-              shape: PinCodeFieldShape.box,
-              borderRadius: BorderRadius.circular(5),
-              fieldHeight: 40.sp,
-              fieldWidth: 40.sp,
-              inactiveFillColor: ColorUtils.greyF2,
-              activeFillColor: ColorUtils.primaryColor,
-              selectedFillColor: ColorUtils.greyF2,
-              activeColor: ColorUtils.transparent,
-              inactiveColor: ColorUtils.transparent,
-              selectedColor: ColorUtils.transparent,
-            ),
-            keyboardType: TextInputType.number,
-            onCompleted: (v) {
-              debugPrint("Completed");
-            },
-            onChanged: (value) {},
-          ),
-          const Spacer(),
-          Obx(
-            () => RichText(
-                text: TextSpan(
-                    style: FontTextStyle.poppinsW5S12Black,
-                    text: VariableUtils.dintReceiveCode,
-                    children: [
-                  TextSpan(
-                    text: VariableUtils.resendAgain,
-                    style: FontTextStyle.poppinsW6S12Primary,
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => onResendOtpTap(),
-                  )
-                ])),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: ConstUtils.horizontalPadding.sp, vertical: 15.sp),
-            child: CustomBtn(
-              onTap: () {},
-              title: VariableUtils.continueStr,
-              bgColor: ColorUtils.primaryColor,
-              radius: 50.sp,
-              height: 45.sp,
-            ),
-          ),
-          SizeConfigUtils.h5,
-        ],
+        ),
       ),
-    ));
+    );
   }
 }

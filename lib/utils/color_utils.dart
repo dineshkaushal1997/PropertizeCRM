@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 class ColorUtils {
   static const transparent = Colors.transparent;
   static const primaryColor = Color(0xff3428AB);
+  static const selectColor = Color(0xffE3E0F9);
+  static const unSelectColor = Color(0xffFFFFFF);
   static const white = Colors.white;
   static const green = Color(0xff1ED170);
   static const red = Color(0xffFE0000);

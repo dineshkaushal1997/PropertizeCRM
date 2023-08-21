@@ -3,8 +3,10 @@ import 'package:property_crm/utils/const_utils.dart';
 import 'package:property_crm/view/auth/login_screen.dart';
 import 'package:property_crm/view/auth/otp_verify.dart';
 import 'package:property_crm/view/auth/register_screen.dart';
+import 'package:property_crm/view/dashbord/bottom_nav_bar.dart';
 import 'package:property_crm/view/onBoarding/on_boarding_screen.dart';
 import 'package:property_crm/view/onBoarding/splash_screen.dart';
+import 'package:property_crm/view/property_management.dart';
 
 class RouteUtils {
   ///ALL ROUTES NAME
@@ -13,6 +15,8 @@ class RouteUtils {
   static const login = '/login';
   static const register = '/Register';
   static const otpVerify = '/OtpVerify';
+  static const bottomNavBar = '/BottomNavBar';
+  static const propertyManagement = '/propertyManagement';
 
   /// --------------------------------   GET PAGES   --------------------------------- ///
 
@@ -39,6 +43,14 @@ class RouteUtils {
       name: otpVerify,
       page: () => const OtpVerify(),
     ),
+    GetPage(
+      name: bottomNavBar,
+      page: () => const BottomNavBar(),
+    ),  GetPage(
+      name: propertyManagement,
+      page: () => const PropertyManagement(),
+    ),
+
   ];
 
   /// --------------------------------  NAVIGATOR  ----------------------------------- ///
@@ -68,6 +80,16 @@ class RouteUtils {
       case otpVerify:
         Get.toNamed(
           otpVerify,
+        );
+        break;
+      case bottomNavBar:
+        Get.offAllNamed(
+          bottomNavBar,
+        );
+        break;
+      case propertyManagement:
+        Get.toNamed(
+          propertyManagement,
         );
         break;
 

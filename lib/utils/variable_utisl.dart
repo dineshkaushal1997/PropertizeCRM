@@ -1,5 +1,8 @@
+// ignore_for_file: constant_identifier_names
+
 class VariableUtils {
   static const appName = "Propertize CRM";
+  static const shortAppName = "CRM";
 
   static const noConnectionMsg =
       "No Internet connection was found. Check your connection or try again.";
@@ -36,4 +39,31 @@ class VariableUtils {
   static const name = "Name";
   static const city = "City";
   static const alreadyHaveAnAccount = "Already have an account? ";
+
+///=========================Properties Screen =====================///
+
+  static const companyName = "Company Name";
+  static const edit= "Edit";
+  static const delete = "Delete";
+  static const areYouSure= "Are You Sure?";
+  static const cancel= "Cancel";
+  static const home= "Home";
+  static const flate= "Flate";
+  static const PropertyManagement= "Property Management";
+  static const block= "Block";
+  static const blockA= "Block A";
+  static const total= "Total";
+  static const number = "Number";
+  static const remaining = "Remaining";
+  static const remainingAmount = "remainingAmount";
+  static const doneAmount = "doneAmount";
+  static const Save = "Save";
+  static const pdf = "Pdf";
+  static const blockName = "blockName";
+
+
+
+
+
+
 }
