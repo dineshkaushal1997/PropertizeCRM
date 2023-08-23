@@ -20,11 +20,7 @@ class _PropertiesTabState extends State<PropertiesTab> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xff3428AB),
         onPressed: () {
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: (context) => CategoryScreen(),
-          //     ));
+          RouteUtils.navigateRoute(RouteUtils.categoryScreen);
         },
         child: Icon(Icons.add),
       ),
@@ -54,7 +50,8 @@ class _PropertiesTabState extends State<PropertiesTab> {
             ),
           )
         ],
-      ),
+      ),      backgroundColor:ColorUtils.grey200,
+
       body: ListView.builder(
         itemCount: 3,
         itemBuilder: (BuildContext context, int index) {
@@ -81,10 +78,10 @@ class _PropertiesTabState extends State<PropertiesTab> {
                         borderRadius: BorderRadius.circular(20)),
                     onSelected: (value) {
                       // Handle the selected option
-                      if (value == 'edit') {
+                      if (value == VariableUtils.edit) {
                         // Open the edit dialog
                         RouteUtils.navigateRoute(RouteUtils.propertyManagement);
-                      } else if (value == 'delete') {
+                      } else if (value == VariableUtils.delete) {
                         // Perform the delete action
                         _performDeleteAction();
                       }
@@ -92,7 +89,7 @@ class _PropertiesTabState extends State<PropertiesTab> {
                     itemBuilder: (BuildContext context) =>
                         <PopupMenuEntry<String>>[
                       PopupMenuItem(
-                          value: 'edit',
+                          value: VariableUtils.edit,
                           child: Row(
                             children: [
                               ImageUtils.edit,
@@ -101,7 +98,7 @@ class _PropertiesTabState extends State<PropertiesTab> {
                             ],
                           )),
                       PopupMenuItem(
-                          value: 'delete',
+                          value: VariableUtils.delete,
                           child: Row(
                             children: [
                               ImageUtils.delete,
@@ -121,27 +118,6 @@ class _PropertiesTabState extends State<PropertiesTab> {
     );
   }
 
-  // void _showEditDialog() {
-  //   // Show the edit dialog here
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       // Build and return the edit dialog
-  //       return AlertDialog(
-  //         title: Text('Edit Company'),
-  //         // Add form fields or content for editing
-  //         actions: [
-  //           TextButton(
-  //             onPressed: () {
-  //              // Close the dialog
-  //             },
-  //             child: Text('Save'),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
 
   void _performDeleteAction() {
     showDialog(

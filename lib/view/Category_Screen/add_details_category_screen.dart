@@ -1,32 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:property_crm/utils/color_utils.dart';
 import 'package:property_crm/utils/variable_utisl.dart';
-import 'package:property_crm/view/property_management_home.dart';
+import 'package:property_crm/view/Category_Screen/add_flate_category.dart';
+import 'package:property_crm/view/Category_Screen/add_home_category.dart';
 
-import 'property_management_flate.dart';
 
-
-class PropertyManagement extends StatefulWidget {
-  const PropertyManagement({Key? key}) : super(key: key);
+class AddDetailsScreen extends StatefulWidget {
+  const AddDetailsScreen({Key? key}) : super(key: key);
 
   @override
-  State<PropertyManagement> createState() => _PropertyManagementState();
+  State<AddDetailsScreen> createState() => _AddDetailsScreenState();
 }
 
-class _PropertyManagementState extends State<PropertyManagement> {
+class _AddDetailsScreenState extends State<AddDetailsScreen> {
   bool showHomeSection = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar:AppBar(
+        backgroundColor: Color(0xff3428AB),
         centerTitle: true,
-        backgroundColor: ColorUtils.primaryColor,
-        title: Text(VariableUtils.PropertyManagement),
-      ),      backgroundColor:ColorUtils.grey200,
-
-
-      body: Column(
+        title: Text(VariableUtils.addDetails),
+      ),backgroundColor:ColorUtils.grey200,
+      body:  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
@@ -41,11 +38,11 @@ class _PropertyManagementState extends State<PropertyManagement> {
                     border: Border.all(
                       width: 0.5,
                       color: showHomeSection
-                          ?ColorUtils.unSelectColor
+                          ? Color(0xff3428AB)
                           : Colors.black12,
                     ),
                     color: showHomeSection
-                        ? ColorUtils.selectColor
+                        ? Color(0xffE3E0F9)
                         : Colors.white,
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -65,11 +62,11 @@ class _PropertyManagementState extends State<PropertyManagement> {
                     border: Border.all(
                       width: 0.5,
                       color: !showHomeSection
-                          ? ColorUtils.unSelectColor
+                          ? Color(0xff3428AB)
                           : Colors.black12,
                     ),
                     color: !showHomeSection
-                        ? ColorUtils.selectColor
+                        ? Color(0xffE3E0F9)
                         : Colors.white,
                     borderRadius: BorderRadius.circular(20),
                   ),
@@ -86,9 +83,9 @@ class _PropertyManagementState extends State<PropertyManagement> {
             ),
           ),
           if (showHomeSection)
-            Expanded(child: HomeManagement())
+            Expanded(child: AddHomeCategory())
           else
-            Expanded(child: FlateManagement()),
+            Expanded(child: AddFlateCategory()),
 
         ],
       ),

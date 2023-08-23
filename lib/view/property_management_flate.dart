@@ -18,21 +18,22 @@ class _FlateManagementState extends State<FlateManagement> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(      backgroundColor:ColorUtils.grey200,
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: 20),
+            const Padding(
+              padding: EdgeInsets.only(left: 20,top: 10),
               child: Text(VariableUtils.block),
             ),
             Row(
               children: [
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 for (String blockName in blockNames)
                   Padding(
-                    padding: EdgeInsets.only(top: 5, left: 5),
+                    padding: const EdgeInsets.only(top: 5, left: 5),
                     child: Container(
                       height: 40,
                       width: 50,
@@ -47,7 +48,8 @@ class _FlateManagementState extends State<FlateManagement> {
                           backgroundColor: selectedBlock == blockName
                               ? ColorUtils.primaryColor
                               : ColorUtils.white,
-                          side: BorderSide(width: 0.5, color: Colors.black12),
+                          side: const BorderSide(
+                              width: 0.5, color: Colors.black12),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -58,79 +60,90 @@ class _FlateManagementState extends State<FlateManagement> {
                   ),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Text('Floor'),
-            ),
-            Wrap(
-              children: [
-                SizedBox(
-                  width: 15,
-                ),
-                for (int i = 1; i <= 7; i++)
-                  Padding(
-                    padding: EdgeInsets.all(3),
-                    child: Container(
-                      height: 40,
-                      width: 50,
-                      child: TextButton(
-                        onPressed: () {
-                          setState(() {
-                            selectedFloor = i - 1;
-                          });
-                        },
-                        style: TextButton.styleFrom(
-                          primary: Colors.black,
-                          backgroundColor: selectedFloor == i - 1
-                              ? Color(0xffE3E0F9)
-                              : Colors.white,
-                          side: BorderSide(width: 0.5, color: Colors.black12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        child: Center(child: Text(i.toString())),
-                      ),
-                    ),
-                  ),
-              ],
+            const Padding(
+              padding: EdgeInsets.only(left: 20, top: 10),
+              child: Text(VariableUtils.floor),
             ),
             Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Text('Flate'),
-            ),
-            Wrap(
-              children: [
-                SizedBox(
-                  width: 15,
-                ),
-                for (int i = 101; i <= 107; i++)
-                  Padding(
-                    padding: EdgeInsets.all(3),
-                    child: Container(
-                      height: 40,
-                      width: 50,
-                      child: TextButton(
-                        onPressed: () {
-                          setState(() {
-                            selectedFlate = i - 1;
-                          });
-                        },
-                        style: TextButton.styleFrom(
-                          primary: Colors.black,
-                          backgroundColor: selectedFlate == i - 1
-                              ? Color(0xffE3E0F9)
-                              : Colors.white,
-                          side: BorderSide(width: 0.5, color: Colors.black12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+              padding: EdgeInsets.only(left: 13),
+              child: Container(
+                height: 100,
+                width: 450,
+                child: Wrap(
+                  children: [
+                    for (int i = 1; i <= 7; i++)
+                      Padding(
+                        padding: const EdgeInsets.all(3),
+                        child: Container(
+                          height: 40,
+                          width: 45,
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                selectedFloor = i - 1;
+                              });
+                            },
+                            style: TextButton.styleFrom(
+                              primary: Colors.black,
+                              backgroundColor: selectedFloor == i - 1
+                                  ? const Color(0xffE3E0F9)
+                                  : Colors.white,
+                              side: const BorderSide(
+                                  width: 0.5, color: Colors.black12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            child: Center(child: Text(i.toString())),
                           ),
                         ),
-                        child: Center(child: Text(i.toString())),
                       ),
-                    ),
-                  ),
-              ],
+                  ],
+                ),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 20),
+              child: Text(VariableUtils.flate),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 13),
+              child: Container(
+                height: 100,
+                width: 450,
+                child: Wrap(
+                  children: [
+
+                    for (int i = 101; i <= 107; i++)
+                      Padding(
+                        padding: const EdgeInsets.all(3),
+                        child: Container(
+                          height: 40,
+                          width: 50,
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                selectedFlate = i - 1;
+                              });
+                            },
+                            style: TextButton.styleFrom(
+                              primary: Colors.black,
+                              backgroundColor: selectedFlate == i - 1
+                                  ? const Color(0xffE3E0F9)
+                                  : Colors.white,
+                              side: const BorderSide(
+                                  width: 0.5, color: Colors.black12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            child: Center(child: Text(i.toString())),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
             ),
             CustomTransactionDetailsCard(
               name: 'Pathan Salman',

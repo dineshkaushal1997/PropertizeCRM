@@ -14,7 +14,7 @@ class CustomTransactionDetailsCard extends StatelessWidget {
   final String selectedBlock;
   final int selectedButtonIndex;
 
-  CustomTransactionDetailsCard({
+  const CustomTransactionDetailsCard({
     required this.name,
     required this.phoneNumber,
     required this.transactions,
@@ -211,7 +211,7 @@ class CustomTransactionDetailsCard extends StatelessWidget {
             ),
             Row(
               children: [
-                const SizedBox(
+                 SizedBox(
                   width: 20,
                 ),
                 Container(
@@ -221,16 +221,22 @@ class CustomTransactionDetailsCard extends StatelessWidget {
                     color: const Color(0xff3428AB),
                     borderRadius: BorderRadius.circular(25),
                   ),
-                  child: const Padding(
+                  child:  Padding(
                     padding: EdgeInsets.only(top: 15),
-                    child: Text(
-                      VariableUtils.Save,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                    child:InkWell(
+                      onTap: () {
+                        Navigator.of(context).pop();
+
+                      },
+                      child:  Text(
+                        VariableUtils.Save,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      textAlign: TextAlign.center,
-                    ),
+                    )
                   ),
                 ),
                 const SizedBox(
@@ -257,10 +263,10 @@ class CustomTransactionDetailsCard extends StatelessWidget {
                         // );
                       }
                     },
-                    child: const Row(
+                    child:  Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                          VariableUtils.pdf,
                           style: TextStyle(
                             color: Color(0xff3428AB),
@@ -268,14 +274,16 @@ class CustomTransactionDetailsCard extends StatelessWidget {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 3,
                         ),
-                        Icon(
-                          Icons.arrow_forward_ios_outlined,
-                          size: 15,
-                          color: Color(0xff3428AB),
-                        ),
+                       InkWell(
+
+                         onTap: () {
+                           Navigator.of(context).pop();
+                         },
+                         child: const Icon(Icons.arrow_forward_ios_outlined,color: ColorUtils.primaryColor),
+                       )
                       ],
                     ),
                   ),

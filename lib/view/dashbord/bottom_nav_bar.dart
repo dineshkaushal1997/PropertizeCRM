@@ -2,7 +2,9 @@
 // ignore_for_file: library_private_types_in_public_api, prefer_final_fields
 
 import 'package:flutter/material.dart';
+import 'package:property_crm/utils/color_utils.dart';
 import 'package:property_crm/utils/image_utils.dart';
+import 'package:property_crm/utils/variable_utisl.dart';
 import 'package:property_crm/view/dashbord/history_tab.dart';
 import 'package:property_crm/view/dashbord/properties_tab.dart';
 import 'package:property_crm/view/dashbord/setting_tab.dart';
@@ -26,6 +28,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:ColorUtils.grey200,
+
       body: _tabs[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -46,15 +50,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
         items:  [
           BottomNavigationBarItem(
             icon: ImageUtils.properties,
-            label: 'Properties',
+            label: VariableUtils.properties,
           ),
           BottomNavigationBarItem(
             icon: ImageUtils.history,
-            label: 'History',
+            label: VariableUtils.history,
           ),
           BottomNavigationBarItem(
             icon:ImageUtils.settings,
-            label: 'Setting',
+            label:VariableUtils.setting,
           ),
         ],
       ),

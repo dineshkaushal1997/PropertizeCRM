@@ -10,6 +10,7 @@ class ColorUtils {
   static const red = Color(0xffFE0000);
   static const darkRed = Color(0xffCF1313);
   static final red800 = Colors.red.shade800;
+  static final grey200 = Colors.grey.shade200;
   static const grey = Color(0xff979797);
   static const greyF2 = Color(0xffF2F2F2);
   static final grey08 = const Color(0xff979797).withOpacity(0.08);

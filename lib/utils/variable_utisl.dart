@@ -52,6 +52,8 @@ class VariableUtils {
   static const PropertyManagement= "Property Management";
   static const block= "Block";
   static const blockA= "Block A";
+  static const blockB= "Block B";
+  static const blockC= "Block C";
   static const total= "Total";
   static const number = "Number";
   static const remaining = "Remaining";
@@ -60,6 +62,33 @@ class VariableUtils {
   static const Save = "Save";
   static const pdf = "Pdf";
   static const blockName = "blockName";
+  static const floor = "Floor";
+  static const history = "History";
+  static const pending = "Pending";
+  static const upcoming = "UpComing";
+  static const Setting = "Setting";
+  static const Category = "Category";
+  static const Rent = "Rent";
+  static const faq = "FAQ";
+  static const save = "Save";
+  static const rateus = "Rate Us";
+  static const profile = "Profile";
+  static const myProperties = "My Properties";
+  static const contactUs = "Contact Us";
+  static const logout = "LogOut";
+  static const propertyManagement = "property management";
+  static const changeLanguage = "Change Language";
+  static const termcondition = "Term & Condition";
+  static const privacyPolicy = "Privacy Policy";
+  static const maintenace = "Maintenace";
+  static const companyname = "Company name";
+  static const Number = "Number";
+  static const City = "City";
+  static const addDetails = "Add Details";
+  static const properties = "Properties";
+  static const setting = "Setting";
+  static const addImage = "Add Image";
+
 
 
 

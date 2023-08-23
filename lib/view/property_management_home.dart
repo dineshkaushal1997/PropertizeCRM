@@ -18,13 +18,14 @@ class _HomeManagementState extends State<HomeManagement> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(      backgroundColor:ColorUtils.grey200,
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 10, left: 30),
+              padding: EdgeInsets.only(top: 10, left: 20),
               child: Text(VariableUtils.block),
             ),
             Row(
@@ -59,7 +60,7 @@ class _HomeManagementState extends State<HomeManagement> {
               ],
             ),
             const Padding(
-              padding: EdgeInsets.only(top: 10, left: 30),
+              padding: EdgeInsets.only(top: 10, left: 20),
               child: Text(VariableUtils.blockA),
             ),
            Padding(padding: EdgeInsets.only(
@@ -124,7 +125,7 @@ class _HomeManagementState extends State<HomeManagement> {
               selectedBlock: selectedBlock,
               selectedButtonIndex: selectedButtonIndex,
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 25),
           ],
         ),
       ),

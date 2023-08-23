@@ -66,4 +66,59 @@ class ImageUtils {
     '${iconBasePath}left.png',
     scale:2,
   );
+  static final contact = Image.asset(
+    '${iconBasePath}contactUs.png',
+    scale:2,
+  );
+  static final faq = Image.asset(
+    '${iconBasePath}faq.png',
+    scale:2,
+  );
+  static final language = Image.asset(
+    '${iconBasePath}language.png',
+    scale:2,
+  );
+  static final logOut = Image.asset(
+    '${iconBasePath}logOut.png',
+    scale:2,
+  );
+  static final myProperties = Image.asset(
+    '${iconBasePath}myProperties.png',
+    scale:2,
+  );
+  static final privacyPolicy = Image.asset(
+    '${iconBasePath}privacyPolicy.png',
+    scale:2,
+  );
+  static final profile = Image.asset(
+    '${iconBasePath}profile.png',
+    scale:2,
+  );
+  static final rateUs = Image.asset(
+    '${iconBasePath}rateUs.png',
+    scale:2,
+  );
+  static final terms = Image.asset(
+    '${iconBasePath}terms.png',
+    scale:2,
+  );
+  static final management = Image.asset(
+    '${iconBasePath}management.png',
+    scale:2,
+  );
+  static final rent = Image.asset(
+    '${iconBasePath}rent.png',
+    scale:2,
+  );
+  static final maintenace = Image.asset(
+    '${iconBasePath}maintenace.png',
+    scale:2,
+  );
+  static final add = Image.asset(
+    '${iconBasePath}add.png',
+    scale:2,
+  );
+
+
+
 }
