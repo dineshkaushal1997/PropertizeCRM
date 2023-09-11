@@ -1,10 +1,18 @@
 import 'package:get/get.dart';
 import 'package:property_crm/utils/const_utils.dart';
+import 'package:property_crm/view/Category_Screen/add_maintenace_category.dart';
+import 'package:property_crm/view/Category_Screen/add_property_category.dart';
+import 'package:property_crm/view/Category_Screen/add_rent_category.dart';
+import 'package:property_crm/view/Category_Screen/category_screen.dart';
 import 'package:property_crm/view/auth/login_screen.dart';
 import 'package:property_crm/view/auth/otp_verify.dart';
 import 'package:property_crm/view/auth/register_screen.dart';
+import 'package:property_crm/view/dashbord/bottom_nav_bar.dart';
 import 'package:property_crm/view/onBoarding/on_boarding_screen.dart';
 import 'package:property_crm/view/onBoarding/splash_screen.dart';
+import 'package:property_crm/view/property_management.dart';
+
+import '../view/profile_Screen.dart';
 
 class RouteUtils {
   ///ALL ROUTES NAME
@@ -13,6 +21,13 @@ class RouteUtils {
   static const login = '/login';
   static const register = '/Register';
   static const otpVerify = '/OtpVerify';
+  static const bottomNavBar = '/BottomNavBar';
+  static const propertyManagement = '/propertyManagement';
+  static const categoryScreen = '/categoryScreen';
+  static const profileScreen = '/profileScreen';
+  static const addPropertymanagement = '/addPropertymanagement';
+  static const addrent = '/addrent';
+  static const addMaintenace = '/addmaintenace';
 
   /// --------------------------------   GET PAGES   --------------------------------- ///
 
@@ -38,6 +53,31 @@ class RouteUtils {
     GetPage(
       name: otpVerify,
       page: () => const OtpVerify(),
+    ),
+    GetPage(
+      name: bottomNavBar,
+      page: () => const BottomNavBar(),
+    ),
+    GetPage(
+      name: propertyManagement,
+      page: () => const PropertyManagement(),
+    ),
+    GetPage(
+      name: categoryScreen,
+      page: () => const CategoryScreen(),
+    ),
+    GetPage(
+      name: profileScreen,
+      page: () => const ProfileScreen(),
+    ), GetPage(
+      name: addPropertymanagement,
+      page: () => const AddPropertyManagement(),
+    ), GetPage(
+      name: addrent,
+      page: () => const AddRentCategory(),
+    ), GetPage(
+      name: addMaintenace,
+      page: () => const AddMaintenaceCategory(),
     ),
   ];
 
@@ -69,6 +109,38 @@ class RouteUtils {
         Get.toNamed(
           otpVerify,
           arguments: args
+        );
+        break;
+      case bottomNavBar:
+        Get.offAllNamed(
+          bottomNavBar,
+        );
+        break;
+      case propertyManagement:
+        Get.toNamed(
+          propertyManagement,
+        );
+        break;
+      case categoryScreen:
+        Get.toNamed(
+          categoryScreen,
+        );
+        break;
+      case profileScreen:
+        Get.toNamed(
+          profileScreen,
+        );
+        break;case addPropertymanagement:
+        Get.toNamed(
+          addPropertymanagement,
+        );
+        break;case addrent:
+        Get.toNamed(
+          addrent,
+        );
+        break;case addMaintenace:
+        Get.toNamed(
+          addMaintenace,
         );
         break;
 

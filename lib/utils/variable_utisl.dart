@@ -1,14 +1,14 @@
+// ignore_for_file: constant_identifier_names
+
 class VariableUtils {
+  static const appName = "Propertize CRM";
+  static const shortAppName = "CRM";
 
   static const noConnectionMsg =
       "No Internet connection was found. Check your connection or try again.";
   static const none = "N/A";
   static const whoops = "Whoops!!";
   static const tryAgain = "Try again";
-  static const invalidOtpTryAgain = "Invalid Otp, try Again!";
-  static const somethingWentWrong = "Something went wrong, try Again!";
-  static const providedPhoneNumberIsNotValid = "The provided phone number is not valid.";
-  static const weHaveBlockedAllRequests = "We have blocked all requests from this device due to unusual activity. Try again later.";
 
   /// ==================== ON BOARDING ==================== ///
   static const onBoardingTitle1 = "Manage";
@@ -39,4 +39,60 @@ class VariableUtils {
   static const name = "Name";
   static const city = "City";
   static const alreadyHaveAnAccount = "Already have an account? ";
+
+///=========================Properties Screen =====================///
+
+  static const companyName = "Company Name";
+  static const edit= "Edit";
+  static const delete = "Delete";
+  static const areYouSure= "Are You Sure?";
+  static const cancel= "Cancel";
+  static const home= "Home";
+  static const flate= "Flate";
+  static const PropertyManagement= "Property Management";
+  static const block= "Block";
+  static const blockA= "Block A";
+  static const blockB= "Block B";
+  static const blockC= "Block C";
+  static const total= "Total";
+  static const number = "Number";
+  static const remaining = "Remaining";
+  static const remainingAmount = "remainingAmount";
+  static const doneAmount = "doneAmount";
+  static const Save = "Save";
+  static const pdf = "Pdf";
+  static const blockName = "blockName";
+  static const floor = "Floor";
+  static const history = "History";
+  static const pending = "Pending";
+  static const upcoming = "UpComing";
+  static const Setting = "Setting";
+  static const Category = "Category";
+  static const Rent = "Rent";
+  static const faq = "FAQ";
+  static const save = "Save";
+  static const rateus = "Rate Us";
+  static const profile = "Profile";
+  static const myProperties = "My Properties";
+  static const contactUs = "Contact Us";
+  static const logout = "LogOut";
+  static const propertyManagement = "property management";
+  static const changeLanguage = "Change Language";
+  static const termcondition = "Term & Condition";
+  static const privacyPolicy = "Privacy Policy";
+  static const maintenace = "Maintenace";
+  static const companyname = "Company name";
+  static const Number = "Number";
+  static const City = "City";
+  static const addDetails = "Add Details";
+  static const properties = "Properties";
+  static const setting = "Setting";
+  static const addImage = "Add Image";
+
+
+
+
+
+
+
 }
