@@ -103,7 +103,6 @@ class LoginForm extends StatelessWidget {
                   if (pNumber.isNotEmpty) {
                     FocusScope.of(context).unfocus();
                     Get.find<AuthViewModel>().signIn("+91 $pNumber");
-                    //RouteUtils.navigateRoute(RouteUtils.otpVerify);
                   }
                 },
                 title: VariableUtils.signIn,

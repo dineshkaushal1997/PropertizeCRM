@@ -35,7 +35,6 @@ class AuthViewModel extends GetxController {
     });
   }
 
-
   Future<bool?> sendOtp({
     required String phoneNumber,
   }) async {
@@ -82,8 +81,9 @@ class AuthViewModel extends GetxController {
       if (user != null) {
         print(FirebaseAuth.instance.currentUser!.phoneNumber);
         isLoading = false;
-        RouteUtils.navigateRoute(RouteUtils.register,);
-
+        RouteUtils.navigateRoute(
+          RouteUtils.bottomNavBar,
+        );
       } else {
         print("Authentication failed");
         isLoading = false;

@@ -9,6 +9,11 @@ class VariableUtils {
   static const none = "N/A";
   static const whoops = "Whoops!!";
   static const tryAgain = "Try again";
+  static const invalidOtpTryAgain = "Invalid Otp, try Again!";
+  static const somethingWentWrong = "Something went wrong, try Again!";
+  static const providedPhoneNumberIsNotValid = "The provided phone number is not valid.";
+  static const weHaveBlockedAllRequests = "We have blocked all requests from this device due to unusual activity. Try again later.";
+
 
   /// ==================== ON BOARDING ==================== ///
   static const onBoardingTitle1 = "Manage";
