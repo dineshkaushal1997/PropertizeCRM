@@ -1,10 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:property_crm/utils/app_config_utils.dart';
 import 'utils/const_utils.dart';
 import 'utils/route_utils.dart';
 import 'utils/variable_utisl.dart';
+import 'viewmodel/auth_viewmodel.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,27 +16,24 @@ Future<void> main() async {
   await GetStorage.init();
 
   ///FIREBASE INITIALIZATION
-  // await Firebase.initializeApp();
+   await Firebase.initializeApp();
 
   /// FIREBASE BACKGROUND NOTIFICATION LISTENER
   // FirebaseMessaging.onBackgroundMessage(
   //     NotificationService.firebaseMessagingBackgroundHandler);
 
   /// SET PORTRAIT ORIENTATIONS
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown
-  ]);
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return LayoutBuilder(
       builder: (_, constraint) {
         logs('constraint.maxWidth:=>${constraint.maxWidth}');
@@ -47,8 +47,7 @@ class MyApp extends StatelessWidget {
             FocusManager.instance.primaryFocus!.unfocus();
           },
           child: GetMaterialApp(
-            title: VariableUtils.appName,
-
+            title: AppConfigUtils.appName,
             debugShowCheckedModeBanner: false,
             getPages: RouteUtils.routePages,
             initialRoute: RouteUtils.splashScreen,
@@ -57,4 +56,8 @@ class MyApp extends StatelessWidget {
       },
     );
   }
+
+  /// ============================= CONTROLLER INITIALIZE ============================= ///
+  final AuthViewModel authViewModel =
+      Get.put<AuthViewModel>(AuthViewModel(), );
 }

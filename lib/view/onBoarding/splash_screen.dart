@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:property_crm/common/custom_text_widget.dart';
+import 'package:property_crm/utils/app_config_utils.dart';
 import 'package:property_crm/utils/color_utils.dart';
 import 'package:property_crm/utils/font_style_utils.dart';
 import 'package:property_crm/utils/preferences_utils.dart';
@@ -36,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
       color: ColorUtils.primaryColor,
       child: Center(
           child: CustomTextWidget(
-        title: VariableUtils.appName,
+        title: AppConfigUtils.appName,
         textStyle: FontTextStyle.poppinsW5S33White,
       )),
     );

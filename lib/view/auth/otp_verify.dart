@@ -13,6 +13,7 @@ import 'package:property_crm/utils/font_style_utils.dart';
 import 'package:property_crm/utils/image_utils.dart';
 import 'package:property_crm/utils/size_config_utils.dart';
 import 'package:property_crm/utils/variable_utisl.dart';
+import 'package:property_crm/viewmodel/auth_viewmodel.dart';
 
 class OtpVerify extends StatefulWidget {
   const OtpVerify({super.key});
@@ -62,6 +63,7 @@ class _OtpVerifyState extends State<OtpVerify> {
             OtpForm(
                 key: UniqueKey(),
                 otpTime: otpTime,
+                pNumber: Get.arguments,
                 onResendOtpTap: () {
                   print('Call---');
                   otpTime = 30.obs;
@@ -75,12 +77,14 @@ class _OtpVerifyState extends State<OtpVerify> {
 }
 
 class OtpForm extends StatelessWidget {
-  const OtpForm(
-      {super.key, required this.otpTime, required this.onResendOtpTap});
+   OtpForm(
+      {super.key, required this.otpTime, required this.onResendOtpTap, required this.pNumber});
 
   final RxInt otpTime;
   final VoidCallback onResendOtpTap;
+  final String pNumber;
 
+  String otp="";
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -105,7 +109,7 @@ class OtpForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomTextWidget(
-                title: "+91 1234567890",
+                title: pNumber,
                 textStyle: FontTextStyle.poppinsW6S12Primary,
               ),
               Obx(
@@ -119,7 +123,7 @@ class OtpForm extends StatelessWidget {
           SizeConfigUtils.h7,
           PinCodeTextField(
             appContext: context,
-            length: 4,
+            length: 6,
             cursorHeight: 15.sp,
             cursorColor: ColorUtils.black26,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -140,29 +144,34 @@ class OtpForm extends StatelessWidget {
             keyboardType: TextInputType.number,
             onCompleted: (v) {
               debugPrint("Completed");
+              otp=v;
             },
             onChanged: (value) {},
           ),
           const Spacer(),
-          Obx(
-            () => RichText(
-                text: TextSpan(
-                    style: FontTextStyle.poppinsW5S12Black,
-                    text: VariableUtils.dintReceiveCode,
-                    children: [
-                  TextSpan(
-                    text: VariableUtils.resendAgain,
-                    style: FontTextStyle.poppinsW6S12Primary,
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () => onResendOtpTap(),
-                  )
-                ])),
-          ),
+          RichText(
+              text: TextSpan(
+                  style: FontTextStyle.poppinsW5S12Black,
+                  text: VariableUtils.dintReceiveCode,
+                  children: [
+                    TextSpan(
+                      text: VariableUtils.resendAgain,
+                      style: FontTextStyle.poppinsW6S12Primary,
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () => onResendOtpTap(),
+                    )
+                  ])),
           Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: ConstUtils.horizontalPadding.sp, vertical: 15.sp),
             child: CustomBtn(
-              onTap: () {},
+              onTap: () {
+                if (otp.isNotEmpty) {
+                  FocusScope.of(context).unfocus();
+                  Get.find<AuthViewModel>().verifyPhoneNumber(otp);
+                  //RouteUtils.navigateRoute(RouteUtils.otpVerify);
+                }
+              },
               title: VariableUtils.continueStr,
               bgColor: ColorUtils.primaryColor,
               radius: 50.sp,

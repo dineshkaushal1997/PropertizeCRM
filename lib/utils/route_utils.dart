@@ -68,6 +68,7 @@ class RouteUtils {
       case otpVerify:
         Get.toNamed(
           otpVerify,
+          arguments: args
         );
         break;
 

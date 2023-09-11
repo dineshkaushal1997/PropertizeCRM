@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "551382419623",
+    "project_id": "propertycrm-58f0b",
+    "storage_bucket": "propertycrm-58f0b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:551382419623:android:ec2b94ac907d18c8893382",
+        "android_client_info": {
+          "package_name": "com.example.property_crm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeTKvBKZbL4CNy7m7lVoQA5kbter670as"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

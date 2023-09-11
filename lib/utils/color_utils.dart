@@ -4,6 +4,7 @@ class ColorUtils {
   static const transparent = Colors.transparent;
   static const primaryColor = Color(0xff3428AB);
   static const white = Colors.white;
+  static final yellow700 = Colors.yellow.shade700;
   static const green = Color(0xff1ED170);
   static const red = Color(0xffFE0000);
   static const darkRed = Color(0xffCF1313);

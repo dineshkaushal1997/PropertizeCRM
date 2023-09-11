@@ -93,7 +93,7 @@ class OnBoardingScreen extends StatelessWidget {
                           const Spacer(),
                           Image.asset(
                             'assets/images/${e.img}',
-                            scale: 2,
+                            scale: 0.4.h,
                           ),
                           SizeConfigUtils.h4,
                         ],

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:property_crm/common/custom_btn.dart';
 import 'package:property_crm/common/custom_text_field.dart';
 import 'package:property_crm/common/custom_text_widget.dart';
+import 'package:property_crm/common/loading_indicator.dart';
 import 'package:property_crm/utils/color_utils.dart';
 import 'package:property_crm/utils/const_utils.dart';
 import 'package:property_crm/utils/extension_utils.dart';
@@ -14,6 +15,7 @@ import 'package:property_crm/utils/route_utils.dart';
 import 'package:property_crm/utils/size_config_utils.dart';
 import 'package:property_crm/utils/validation_utils.dart';
 import 'package:property_crm/utils/variable_utisl.dart';
+import 'package:property_crm/viewmodel/auth_viewmodel.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -22,15 +24,27 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 5.h,
-              ),
-              child: ImageUtils.loginImg,
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 5.h,
+                  ),
+                  child: ImageUtils.loginImg,
+                ),
+                LoginForm(),
+              ],
             ),
-            const LoginForm(),
+            GetBuilder<AuthViewModel>(
+              builder: (controller) {
+                if (!controller.isLoading) {
+                  return const SizedBox();
+                }
+                return postDataLoadingIndicator();
+              },
+            )
           ],
         ),
       ),
@@ -39,9 +53,11 @@ class LoginScreen extends StatelessWidget {
 }
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({
+  LoginForm({
     super.key,
   });
+
+  String pNumber = "";
 
   @override
   Widget build(BuildContext context) {
@@ -70,6 +86,9 @@ class LoginForm extends StatelessWidget {
               child: CommonTextField(
                 regularExpression: RegularExpression.digitsPattern,
                 hintText: VariableUtils.enterPhoneNumber,
+                onChange: (value) {
+                  pNumber = value;
+                },
                 pIcon: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8.sp),
                   child: ImageUtils.phone,
@@ -81,7 +100,11 @@ class LoginForm extends StatelessWidget {
                   horizontal: ConstUtils.horizontalPadding.sp, vertical: 25.sp),
               child: CustomBtn(
                 onTap: () {
-                  RouteUtils.navigateRoute(RouteUtils.otpVerify);
+                  if (pNumber.isNotEmpty) {
+                    FocusScope.of(context).unfocus();
+                    Get.find<AuthViewModel>().signIn("+91 $pNumber");
+                    //RouteUtils.navigateRoute(RouteUtils.otpVerify);
+                  }
                 },
                 title: VariableUtils.signIn,
                 bgColor: ColorUtils.primaryColor,
