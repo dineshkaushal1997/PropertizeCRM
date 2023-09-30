@@ -102,7 +102,7 @@ class LoginForm extends StatelessWidget {
                 onTap: () {
                   if (pNumber.isNotEmpty) {
                     FocusScope.of(context).unfocus();
-                    Get.find<AuthViewModel>().signIn("+91 $pNumber");
+                    Get.find<AuthViewModel>().sendOtp(phoneNumber:"+91 $pNumber");
                   }
                 },
                 title: VariableUtils.signIn,

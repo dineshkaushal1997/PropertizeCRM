@@ -3,6 +3,8 @@ import 'package:get_storage/get_storage.dart';
 class PreferencesUtils {
   static GetStorage getStorage = GetStorage();
   static String isOnBoarding = 'IS_ON_BOARDING';
+  static String fcmToken = 'FCM_TOKEN';
+  static String user = 'USER';
 
   /// ================================== BOOL ================================== ///
   static Future<void> setBool({required String key, required bool value}) async {

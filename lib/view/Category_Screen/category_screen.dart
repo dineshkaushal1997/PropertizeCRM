@@ -1,19 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:property_crm/utils/color_utils.dart';
 import 'package:property_crm/utils/image_utils.dart';
 import 'package:property_crm/utils/route_utils.dart';
 import 'package:property_crm/utils/variable_utisl.dart';
 import 'package:property_crm/view/Category_Screen/add_details_category_screen.dart';
 
+class CategoryModel {
+  final String title;
+  final Widget icon;
+  final VoidCallback voidCallback;
 
-class CategoryScreen extends StatefulWidget {
-  const CategoryScreen({Key? key}) : super(key: key);
-
-  @override
-  State<CategoryScreen> createState() => _CategoryScreenState();
+  CategoryModel(
+      {required this.title, required this.icon, required this.voidCallback});
 }
 
-class _CategoryScreenState extends State<CategoryScreen> {
+class CategoryScreen extends StatelessWidget {
+  CategoryScreen({Key? key}) : super(key: key);
+
+  List<CategoryModel> categoryList = [
+    CategoryModel(
+      title: VariableUtils.propertyManagement,
+      icon: ImageUtils.management,
+      voidCallback: () {
+        RouteUtils.navigateRoute(RouteUtils.addPropertymanagement);
+      },
+    ),
+    CategoryModel(
+      title: VariableUtils.Rent,
+      icon: ImageUtils.rent,
+      voidCallback: () {
+        RouteUtils.navigateRoute(RouteUtils.addrent);
+      },
+    ),
+    CategoryModel(
+      title: VariableUtils.maintenace,
+      icon: ImageUtils.maintenace,
+      voidCallback: () {
+        RouteUtils.navigateRoute(RouteUtils.addMaintenace);
+      },
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,93 +61,31 @@ class _CategoryScreenState extends State<CategoryScreen> {
         centerTitle: true,
         title: const Text(VariableUtils.Category),
       ),
-      backgroundColor:ColorUtils.grey200,
-
+      backgroundColor: ColorUtils.grey200,
       body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Container(
-                height: 100,
-                width: 330,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 0.5, color: Colors.black12),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Center(
-                  child: ListTile(
-                    leading: Container(
-                      child: ImageUtils.management,
-                    ),
-                    title: GestureDetector(
-                      onTap: () {
-                        RouteUtils.navigateRoute(RouteUtils.addPropertymanagement);
-
-                      },
-                      child: const Text(
-                        VariableUtils.propertyManagement,
-                        style: TextStyle(fontSize: 20),
+          children: categoryList
+              .map((e) => Container(
+                  height: 100,
+                  width: Get.width,
+                  decoration: BoxDecoration(
+                      border: Border.all(width: 0.5, color: Colors.black12),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Center(
+                    child: ListTile(
+                      leading: Container(
+                        child: e.icon,
+                      ),
+                      title: GestureDetector(
+                        onTap: e.voidCallback,
+                        child: Text(
+                          e.title,
+                          style: TextStyle(fontSize: 20),
+                        ),
                       ),
                     ),
-                  ),
-                )),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Container(
-                height: 100,
-                width: 330,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 0.5, color: Colors.black12),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Center(
-                  child: ListTile(
-                    leading: Container(
-                      child: ImageUtils.rent,
-                    ),
-                    title: GestureDetector(
-                      onTap: () {
-                        RouteUtils.navigateRoute(RouteUtils.addrent);
-
-                      },
-                      child: const Text(
-                        VariableUtils.Rent,
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
-                )),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Container(
-                height: 100,
-                width: 330,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 0.5, color: Colors.black12),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20)),
-                child: Center(
-                  child: ListTile(
-                    leading: Container(
-                      child: ImageUtils.maintenace,
-                    ),
-                    title: GestureDetector(
-                      onTap: () {
-                        RouteUtils.navigateRoute(RouteUtils.addMaintenace);
-
-                      },
-                      child: const Text(
-                        VariableUtils.maintenace,
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ),
-                  ),
-                )),
-          )
-        ],
-      ),
+                  )))
+              .toList()),
     );
   }
 }

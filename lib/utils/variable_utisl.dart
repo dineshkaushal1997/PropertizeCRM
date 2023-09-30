@@ -9,8 +9,10 @@ class VariableUtils {
   static const none = "N/A";
   static const whoops = "Whoops!!";
   static const tryAgain = "Try again";
-  static const invalidOtpTryAgain = "Invalid Otp, try Again!";
-  static const somethingWentWrong = "Something went wrong, try Again!";
+  static const invalidOtpTryAgain = "Invalid Otp, please try Again!";
+  static const registerFailedTryAgain = "Register failed, please try Again!";
+  static const userNotFoundTryAgain = "User not found, please try Again!";
+  static const somethingWentWrong = "Something went wrong, please try Again!";
   static const providedPhoneNumberIsNotValid = "The provided phone number is not valid.";
   static const weHaveBlockedAllRequests = "We have blocked all requests from this device due to unusual activity. Try again later.";
 

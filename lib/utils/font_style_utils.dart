@@ -57,6 +57,8 @@ class FontTextStyle {
       poppinsW6S20Black.copyWith(color: ColorUtils.white, fontSize: 12.sp);
   static TextStyle poppinsW6S12Primary =
       poppinsW6S12White.copyWith(color: ColorUtils.primaryColor);
+  static TextStyle poppinsW6S12Grey400 =
+      poppinsW6S12White.copyWith(color: ColorUtils.greyS400);
     static TextStyle poppinsW5S12Black =
     poppinsW5S14Black.copyWith(fontSize: 12.sp);
     static TextStyle poppinsW4S12Black =

@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:property_crm/common/custom_btn.dart';
 import 'package:property_crm/common/custom_text_widget.dart';
+import 'package:property_crm/common/loading_indicator.dart';
+import 'package:property_crm/model/user_model.dart';
 import 'package:property_crm/utils/color_utils.dart';
 import 'package:property_crm/utils/const_utils.dart';
 import 'package:property_crm/utils/extension_utils.dart';
@@ -52,23 +54,38 @@ class _OtpVerifyState extends State<OtpVerify> {
   Widget build(BuildContext context) {
     return Material(
       child: SafeArea(
-        child: Column(
+        child: Stack(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: 5.h,
-              ),
-              child: ImageUtils.otpImg,
+            Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: 5.h,
+                  ),
+                  child: ImageUtils.otpImg,
+                ),
+                OtpForm(
+                    key: UniqueKey(),
+                    otpTime: otpTime,
+                    pNumber: (Get.arguments is String)
+                        ? Get.arguments
+                        : (Get.arguments as UserModel).pNumber,
+                    userModel: (Get.arguments is String) ? null : Get.arguments,
+                    onResendOtpTap: () {
+                      print('Call---');
+                      otpTime.value = 30;
+                      init();
+                    }),
+              ],
             ),
-            OtpForm(
-                key: UniqueKey(),
-                otpTime: otpTime,
-                pNumber: Get.arguments,
-                onResendOtpTap: () {
-                  print('Call---');
-                  otpTime = 30.obs;
-                  init();
-                }),
+            GetBuilder<AuthViewModel>(
+              builder: (controller) {
+                if (!controller.isLoading) {
+                  return const SizedBox();
+                }
+                return postDataLoadingIndicator();
+              },
+            )
           ],
         ),
       ),
@@ -77,14 +94,20 @@ class _OtpVerifyState extends State<OtpVerify> {
 }
 
 class OtpForm extends StatelessWidget {
-   OtpForm(
-      {super.key, required this.otpTime, required this.onResendOtpTap, required this.pNumber});
+  OtpForm(
+      {super.key,
+      required this.otpTime,
+      required this.onResendOtpTap,
+      required this.pNumber,
+      this.userModel});
 
   final RxInt otpTime;
   final VoidCallback onResendOtpTap;
   final String pNumber;
+  UserModel? userModel;
 
-  String otp="";
+  String otp = "";
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -144,23 +167,30 @@ class OtpForm extends StatelessWidget {
             keyboardType: TextInputType.number,
             onCompleted: (v) {
               debugPrint("Completed");
-              otp=v;
+              otp = v;
+              FocusScope.of(context).unfocus();
+              Get.find<AuthViewModel>().verifyPhoneNumber(otp,reqModel: userModel);
             },
             onChanged: (value) {},
           ),
           const Spacer(),
-          RichText(
-              text: TextSpan(
-                  style: FontTextStyle.poppinsW5S12Black,
-                  text: VariableUtils.dintReceiveCode,
-                  children: [
-                    TextSpan(
-                      text: VariableUtils.resendAgain,
-                      style: FontTextStyle.poppinsW6S12Primary,
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () => onResendOtpTap(),
-                    )
-                  ])),
+          Obx(
+            () => RichText(
+                text: TextSpan(
+                    style: FontTextStyle.poppinsW5S12Black,
+                    text: VariableUtils.dintReceiveCode,
+                    children: [
+                  TextSpan(
+                    text: VariableUtils.resendAgain,
+                    style: otpTime.value == 0
+                        ? FontTextStyle.poppinsW6S12Primary
+                        : FontTextStyle.poppinsW6S12Grey400,
+                    recognizer: TapGestureRecognizer()
+                      ..onTap =
+                          () => otpTime.value == 0 ? onResendOtpTap() : null,
+                  )
+                ])),
+          ),
           Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: ConstUtils.horizontalPadding.sp, vertical: 15.sp),
@@ -168,8 +198,8 @@ class OtpForm extends StatelessWidget {
               onTap: () {
                 if (otp.isNotEmpty) {
                   FocusScope.of(context).unfocus();
-                  Get.find<AuthViewModel>().verifyPhoneNumber(otp);
-                  //RouteUtils.navigateRoute(RouteUtils.otpVerify);
+                  Get.find<AuthViewModel>().verifyPhoneNumber(otp,reqModel: userModel);
+
                 }
               },
               title: VariableUtils.continueStr,

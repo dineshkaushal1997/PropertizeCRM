@@ -64,7 +64,7 @@ class RouteUtils {
     ),
     GetPage(
       name: categoryScreen,
-      page: () => const CategoryScreen(),
+      page: () =>  CategoryScreen(),
     ),
     GetPage(
       name: profileScreen,

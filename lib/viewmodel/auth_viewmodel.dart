@@ -1,9 +1,13 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:property_crm/model/user_model.dart';
+import 'package:property_crm/service/auth_service.dart';
 import 'package:property_crm/utils/connection_utils.dart';
 import 'package:property_crm/utils/const_utils.dart';
+import 'package:property_crm/utils/preferences_utils.dart';
 import 'package:property_crm/utils/route_utils.dart';
 import 'package:property_crm/utils/variable_utisl.dart';
 
@@ -21,28 +25,15 @@ class AuthViewModel extends GetxController {
 
   /// =========================== SEND OTP =========================== ///
 
-  Future<void> signIn(String pNumber) async {
+  Future<bool?> sendOtp(
+      {required String phoneNumber, UserModel? reqModel}) async {
     isLoading = true;
-    await ConnectionUtils.checkConnectionStatus().then((value) async {
-      if (value == true) {
-        await sendOtp(
-          phoneNumber: pNumber,
-        );
-      } else {
-        isLoading = false;
-        ConstUtils.showToast(msg: VariableUtils.noConnectionMsg);
-      }
-    });
-  }
-
-  Future<bool?> sendOtp({
-    required String phoneNumber,
-  }) async {
     phoneCodeSent(String verificationID, [int? forceResendinToken]) {
       log('verificationID : $verificationID , OTP send successfully');
       isLoading = false;
       _verificationID = verificationID;
-      RouteUtils.navigateRoute(RouteUtils.otpVerify, args: phoneNumber);
+      RouteUtils.navigateRoute(RouteUtils.otpVerify,
+          args: reqModel ?? phoneNumber);
     }
 
     try {
@@ -71,7 +62,7 @@ class AuthViewModel extends GetxController {
   }
 
   /// =========================== OTP VERIFY =========================== ///
-  Future<void> verifyPhoneNumber(String otp) async {
+  Future<void> verifyPhoneNumber(String otp, {UserModel? reqModel}) async {
     try {
       isLoading = true;
       PhoneAuthCredential credential = PhoneAuthProvider.credential(
@@ -81,6 +72,26 @@ class AuthViewModel extends GetxController {
       if (user != null) {
         print(FirebaseAuth.instance.currentUser!.phoneNumber);
         isLoading = false;
+        if (reqModel != null) {
+          reqModel.uId = FirebaseAuth.instance.currentUser!.uid;
+          final status = await AuthService.register(reqModel);
+          if (!status) {
+            ConstUtils.showToast(msg: VariableUtils.registerFailedTryAgain);
+            return;
+          }
+          await PreferencesUtils.setString(
+              key: PreferencesUtils.user, value: jsonEncode(reqModel.toJson()));
+        } else {
+          final userModel =
+              await AuthService.getUser(FirebaseAuth.instance.currentUser!.uid);
+          if (userModel == null) {
+            ConstUtils.showToast(msg: VariableUtils.userNotFoundTryAgain);
+            return;
+          }
+          await PreferencesUtils.setString(
+              key: PreferencesUtils.user,
+              value: jsonEncode(userModel.toJson()));
+        }
         RouteUtils.navigateRoute(
           RouteUtils.bottomNavBar,
         );
